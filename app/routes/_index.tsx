@@ -1,7 +1,17 @@
+import Stripe from "stripe";
 import type { MetaFunction } from "@remix-run/cloudflare";
 
 export const meta: MetaFunction = () => {
   return [{ title: "New Remix App" }, { name: "description", content: "Welcome to Remix!" }];
+};
+
+export const loader = () => {
+  const stripe = new Stripe("SECRET KEY", {
+    typescript: true,
+    maxNetworkRetries: 3,
+  });
+  void stripe;
+  return {};
 };
 
 export default function Index() {
